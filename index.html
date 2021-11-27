@@ -9,6 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
+    <script defer src="./node_modules/@fortawesome/fontawesome-free/js/brands.js"></script>
+    <script defer src="./node_modules/@fortawesome/fontawesome-free/js/solid.js"></script>
+    <script defer src="./node_modules/@fortawesome/fontawesome-free/js/fontawesome.js"></script>
     <script src="./index.js" type="module"></script>
     <title>Game Night</title>
 </head>
@@ -63,7 +66,7 @@
                         4
                     </div>
                 </li>
-                
+
             </ul>
         </section>
         <section id="gamesOverview">
@@ -89,7 +92,7 @@
                         4
                     </div>
                 </li>
-                
+
             </ul>
         </section>
         <section id="gamenights">
@@ -106,11 +109,15 @@
             </div>
 
             <div id="gamenightList">
-                <div class="gamenightCard">
+                <article class="gamenightCard">
                     <h1>Benoit's first gamenight!</h1>
                     <div class="gamenightCardAddress">
-                        <div class="gamenightCardIcon">
-                            <i class="fas fa-brain"></i>
+                        <div class="iconContainer">
+                            <div class="iconHexagon">
+                                <div>
+                                    <i class="fas fa-map-marker fa-lg"></i>
+                                </div>
+                            </div>
                         </div>
                         <p>
                             Nijverheidskaai 170
@@ -118,6 +125,13 @@
                         </p>
                     </div>
                     <div class="gamenightCardTime">
+                        <div class="iconContainer">
+                            <div class="iconHexagon">
+                                <div>
+                                    <i class="fas fa-clock fa-lg"></i>
+                                </div>
+                            </div>
+                        </div>
                         <p>
                             20/10/2021
                             18h00
@@ -125,11 +139,97 @@
                     </div>
                     <div class="gamenightCardGuests">
                         <p>Players</p>
+                        <div>
+                            <div class="iconHexagon">
+                                <div>
+                                    BD
+                                </div>
+                            </div>
+                            <div class="iconHexagon">
+                                <div>
+                                    BD
+                                </div>
+                            </div>
+                            <div class="iconHexagon">
+                                <div>
+                                    BD
+                                </div>
+                            </div>
+                            <div class="iconHexagon">
+                                <div>
+                                    BD
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="gamenightCardCategories">
                         <p>Categories</p>
                     </div>
-                </div>
+
+                    <h2>Games</h2>
+                    <div class="gamenightCardGames">
+                        <div class="gamenightGame">
+                            <img src="https://via.placeholder.com/100x150" alt="Placeholder image">
+                            <div>
+                                <h3>Colonists of Catan</h3>
+                                <dl>
+                                    <dt>Players</dt>
+                                    <dd>2 - 4</dd>
+                                    <dt>Duration</dt>
+                                    <dd>120 min</dd>
+                                    <dt>Categories</dt>
+                                    <dd>
+                                        <div class="iconHexagon smallHexagon">
+                                            <div>
+                                                <i class="fas fa-clock"></i>
+                                            </div>
+                                        </div> 
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="gamenightGame">
+                            <img src="https://via.placeholder.com/100x150" alt="Placeholder image">
+                            <div>
+                                <h3>Colonists of Catan</h3>
+                                <dl>
+                                    <dt>Players</dt>
+                                    <dd>2 - 4</dd>
+                                    <dt>Duration</dt>
+                                    <dd>120 min</dd>
+                                    <dt>Categories</dt>
+                                    <dd>
+                                        <div class="iconHexagon smallHexagon">
+                                            <div>
+                                                <i class="fas fa-clock"></i>
+                                            </div>
+                                        </div> 
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="gamenightGame">
+                            <img src="https://via.placeholder.com/100x150" alt="Placeholder image">
+                            <div>
+                                <h3>Colonists of Catan</h3>
+                                <dl>
+                                    <dt>Players</dt>
+                                    <dd>2 - 4</dd>
+                                    <dt>Duration</dt>
+                                    <dd>120 min</dd>
+                                    <dt>Categories</dt>
+                                    <dd>
+                                        <div class="iconHexagon smallHexagon">
+                                            <div>
+                                                <i class="fas fa-clock"></i>
+                                            </div>
+                                        </div> 
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </article>
             </div>
         </section>
     </main>

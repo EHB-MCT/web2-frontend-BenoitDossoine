@@ -106,6 +106,7 @@ section#intro {
     color: white;
 }
 
+/* Big hexagons on homepage --> see sources */
 .hex-grid__list {
     --amount: 5;
     --counter: 1;
@@ -124,7 +125,7 @@ section#intro {
     grid-column: 1 / span 3;
     grid-row: calc(var(--counter) + var(--counter)) / span 2;
     height: 0;
-    padding-bottom: 100%;
+    padding-bottom: 86%;
 }
 
 
@@ -179,12 +180,13 @@ section#intro {
     transform: scale(1.05);
 } */
 
+/* End of hexagons */
+
 #gamenights {
     min-height: 100vh;
     background-color: #9c4300;
 
     padding: 0 7%;
-
 }
 
 #gamenightButtons {
@@ -196,10 +198,22 @@ section#intro {
 
 #gamenightButtons button {
     grid-column: 2/ span 2;
+    background: white;
+    border: black 1px solid;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    padding: 0.5em 1em;
 }
 
 #gamenightButtons #filterGamenight {
     grid-column: 10/ span 2;
+    font-size: 20px;
+}
+
+#gamenightButtons #filterGamenight>select {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    width: 100%;
 }
 
 #gamenightList {
@@ -210,43 +224,163 @@ section#intro {
 }
 
 .gamenightCard {
-    grid-column: 3/ span 8;
+    grid-column: 2/ span 10;
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(10, 1fr);
     grid-column-gap: 1vw;
     grid-row-gap: 20px;
 
     background-color: white;
 
     margin: 50px 0;
+    padding: 50px 0;
 }
 
-.gamenightCard h1{
-    grid-column: 1/ span 8;
+.gamenightCard h1 {
+    grid-column: 1/ span 10;
 
-    margin: 10px 0 0;
+    font-size: 30px;
+    margin: 0 0 50px;
     text-align: center;
 }
 
-.gamenightCardAddress{
+.gamenightCard h2 {
+    grid-column: 2/span 8;
+    grid-row: 4/span 1;
+
+    font-size: 25px;
+    margin: 10px 0 0;
+}
+
+.gamenightCard p{
+    font-size: 20px;
+}
+.gamenightCardAddress {
     grid-row: 2/ span 1;
     grid-column: 2/span 3;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.gamenightCardAddress p,
+.gamenightCardTime p {
+    width: calc(100% - 3em);
+
+    box-sizing: border-box;
+    padding-left: 1em;
+    margin: 0;
 }
 
 
-.gamenightCardTime{
+.gamenightCardTime {
     grid-row: 2/ span 1;
-    grid-column: 6/ span 2;
+    grid-column: 7/ span 2;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
-.gamenightCardGuests{
+.gamenightCardGuests {
     grid-row: 3/ span 1;
     grid-column: 2/span 3;
 }
 
-.gamenightCardCategories{
+.gamenightCardGuests>div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.gamenightCardCategories {
     grid-row: 3/ span 1;
-    grid-column: 6/ span 2;
+    grid-column: 7/ span 2;
+}
+
+.gamenightCardGames {
+    display: grid;
+    grid-row: 5/ span 1;
+    grid-column: 2/ span 8;
+    grid-template-columns: repeat(8, 1fr);
+    column-gap: 1vw;
+    row-gap: 1vw;
+}
+
+.gamenightGame {
+    grid-column: auto/span 4;
+    grid-row: auto/span 1;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 1vw;
+
+    box-sizing: border-box;
+
+    border: 1px solid black;
+}
+
+.gamenightGame img {
+    grid-column: 1/span 2;
+    width: 100%;
+}
+
+.gamenightGame>div {
+    grid-column: 3/span 2;
+}
+
+.gamenightGame h3 {
+    margin: 15px 0;
+}
+
+.gamenightGame dd {
+    font-size: 20px;
+    margin: 0 0 10px;
+}
+
+
+.iconHexagon {
+    position: relative;
+    width: 3em;
+}
+
+.smallHexagon {
+    width: 2em;
+}
+
+.iconHexagon::before,
+.iconHexagon::after {
+    content: "";
+    display: block;
+
+    /* Padding bottom to ensure correct dimensions for hexagons */
+    padding-bottom: 86.60254%;
+    background-color: black;
+    clip-path: polygon(75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%, 25% 0);
+    z-index: 1;
+}
+
+.iconHexagon::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    transform: scale(.9);
+}
+
+.iconHexagon>div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #intro,
