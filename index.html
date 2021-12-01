@@ -21,7 +21,6 @@
         <img src="" alt="">
         <nav>
             <ul>
-                <li class="navigationLink">HOME</li>
                 <li class="navigationLink">GAME NIGHTS</li>
                 <li class="navigationLink">MY LIBRARY</li>
             </ul>
@@ -29,22 +28,12 @@
         <img src="" alt="">
     </header>
     <main>
-        <section id="intro">
-            <form id="homePlanner">
-                <input type="number"><input type="date"><select name="" id="homeGameType">
-                    <option value="Strategy">Strategy</option>
-                    <option value="Cooperative">Cooperative</option>
-                    <option value="Fantasy">Fantasy</option>
-                </select><input type="submit" value="Start planning!">
-            </form>
-
-            <div id="surpriseBtnDiv">
-                <p>Not sure what to play?</p>
-                <button>Surprise me!</button>
+        <div id="loader">
+            <div>
+                <div class="hexagon"></div>
             </div>
-        </section>
+        </div>
         <section id="gamenightOverview">
-            <p>GAME NIGHTS</p>
             <ul class="hex-grid__list">
                 <li class="hex-grid__item">
                     <div class="hex-grid__content">
@@ -66,48 +55,26 @@
                         4
                     </div>
                 </li>
-
+                <li class="hex-grid__item">
+                    <div class="hex-grid__content">
+                        5
+                    </div>
+                </li>
+                <li class="hex-grid__item">
+                    <div class="hex-grid__content">
+                        6
+                    </div>
+                </li>
+                <li class="hex-grid__item">
+                    <div class="hex-grid__content">
+                        7
+                    </div>
+                </li>  
             </ul>
         </section>
-        <section id="gamesOverview">
-            <p>YOUR GAMES</p>
-            <ul class="hex-grid__list">
-                <li class="hex-grid__item">
-                    <div class="hex-grid__content">
-                        1
-                    </div>
-                </li>
-                <li class="hex-grid__item">
-                    <div class="hex-grid__content">
-                        2
-                    </div>
-                </li>
-                <li class="hex-grid__item">
-                    <div class="hex-grid__content">
-                        3
-                    </div>
-                </li>
-                <li class="hex-grid__item">
-                    <div class="hex-grid__content">
-                        4
-                    </div>
-                </li>
-
-            </ul>
-        </section>
+        
         <section id="gamenights">
-            <div id="gamenightButtons">
-                <button>New gamenight</button>
-                <div id="filterGamenight">
-                    <label for="filterGN">Filter by:</label>
-                    <select name="filterGN" id="filterGN">
-                        <option value="Date">Date</option>
-                        <option value="Players">Number of Players</option>
-                        <option value="Duration">Duration</option>
-                    </select>
-                </div>
-            </div>
-
+            
             <div id="gamenightList">
                 <article class="gamenightCard">
                     <h1>Benoit's first gamenight!</h1>
@@ -183,7 +150,7 @@
                                             <div>
                                                 <i class="fas fa-clock"></i>
                                             </div>
-                                        </div> 
+                                        </div>
                                     </dd>
                                 </dl>
                             </div>
@@ -203,7 +170,7 @@
                                             <div>
                                                 <i class="fas fa-clock"></i>
                                             </div>
-                                        </div> 
+                                        </div>
                                     </dd>
                                 </dl>
                             </div>
@@ -223,7 +190,7 @@
                                             <div>
                                                 <i class="fas fa-clock"></i>
                                             </div>
-                                        </div> 
+                                        </div>
                                     </dd>
                                 </dl>
                             </div>
