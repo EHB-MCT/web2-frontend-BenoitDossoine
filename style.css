@@ -1,7 +1,11 @@
 :root{
     --background-color: #9c4300;
     --primary-color: #f1f1f1;
-    --loader-background: #1e1e1e;
+    --custom-black: #1e1e1e;
+    --sand-color: #f0ad00;
+    --stone-color: #7b6f83;
+    --water-color: #4fa6eb;
+    --forest-color: #517d19;
 }
 
 body {
@@ -13,7 +17,9 @@ body {
 
 .hexagon {
     width: 3em;
+    height: calc(3em * .8660254);
     margin: .25em;
+    color: var(--primary-color);
     position: relative;
     display: inline-block;
 }
@@ -39,10 +45,11 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: var(--background-color);
+    background-color: var(--custom-black);
     clip-path: polygon(75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%, 25% 0);
     transform: rotate(0deg) scale(.9);
 }
+
 .hexagon > * {
     position: absolute;
     top: 0;
@@ -50,9 +57,16 @@ body {
     width: 100%;
     height: 100%;
     z-index: 100;
+
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.hexagon > svg {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 
 /*////////////// Loader ///////////////////*/
@@ -70,8 +84,9 @@ body {
     z-index: 999;
     overflow: hidden;
 }
+
 #loader > div {
-    background-color: var(--loader-background);
+    background-color: var(--background-color);
 }
 #loader .hexagon {
     font-size: 4em;
@@ -115,22 +130,34 @@ body {
     }   
 }
 
+.container{
+    width: 86%;
+    margin: 0 auto;
+}
 
-/* Header */
+/*///// Header /////*/
 header {
     position: absolute;
-    display: flex;
-    justify-content: space-between;
-
+    
     width: 100%;
-
     font-size: 30px;
     color: var(--primary-color);
+    background-color: var(--custom-black);
     text-transform: uppercase;
 }
 
+header>.container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .hexagon>svg{
+    width: 1em!important;
+}
+
 header nav {
-    width: 50%;
+    width: auto;
 }
 
 header ul {
@@ -143,19 +170,24 @@ header ul {
 
 }
 
+header li{
+    margin: 0 1em 2px;
+}
+
 header .navigationLink:hover {
     border-bottom: var(--primary-color) 2px solid;
+    margin-bottom: 0;
 }
 
 
 #gamenightOverview {
     min-height: 100vh;
-    background-color: var(--background-color);
-    padding: 200px 7% 0 ;
+    background-color: var(--custom-black);
+    padding: 150px 7% 0 ;
 
 }
 
-/* Big hexagons on homepage --> see sources */
+/*///// Big hexagons on homepage --> see sources /////*/
 .hex-grid__list {
     --amount: 5;
     --counter: 1;
@@ -225,12 +257,101 @@ header .navigationLink:hover {
     padding: 2rem 25%;
 }
 
-/* .hex-grid__content:hover{
-    background-color: red;
-    transform: scale(1.05);
-} */
-
 /* End of hexagons */
+
+/* ///// Gamenight list ///// */
+
+#addGameNight{
+    background-color: var(--background-color);
+    opacity: .7;
+    transition: opacity .2s;
+}
+
+
+#addGameNight:hover{
+    opacity: 1;
+}
+
+
+#addGameNight>p{
+    font-size: 15vw;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    color:var(--primary-color)
+}
+
+.hex-gamenight{
+    background-size: cover;
+    color: var(--custom-black);
+}
+.hex-gamenight>*{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 2rem 25%;
+    text-align: center;
+    font-size: 1.5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.hex-gamenight p{
+    margin: 0;
+}
+
+.homeGameNightInfo{
+    opacity: 0;
+    transition: opacity .3s;
+}
+
+.sand .homeGameNightInfo{
+    background-color: var(--sand-color);
+}
+.forest .homeGameNightInfo{
+    background-color: var(--forest-color);
+}
+.water .homeGameNightInfo{
+    background-color: var(--water-color);
+}
+.stone .homeGameNightInfo{
+    background-color: var(--stone-color);
+}
+
+.hex-gamenight:hover .homeGameNightInfo{
+    opacity: 1;
+}
+
+.stone{
+    background-color: var(--stone-color);
+    background-image: url(./img/stone.svg);
+}
+
+.water{
+    background-image: url(./img/water.svg);
+    background-color:var(--water-color);
+}
+
+.sand{
+    background-image: url(./img/sand.svg);
+    background-color:var(--sand-color);
+}
+
+.forest{
+    background-image: url(./img/forest.svg);
+    background-color:var(--forest-color);
+}
+
 
 #gamenights {
     min-height: 100vh;
