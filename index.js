@@ -26,7 +26,6 @@ function addPlayer() {
         document.getElementById("playersInput").value++;
         document.getElementById("numberContainer").insertAdjacentHTML('beforeend', '<div class="hexagon"></div>');
     }
-    console.log(document.getElementById("playersInput").value);
 }
 
 function removePlayer() {
@@ -34,5 +33,4 @@ function removePlayer() {
         document.getElementById("playersInput").value--;
         document.getElementById("numberContainer").removeChild(document.getElementById("numberContainer").lastChild);
     }
-    console.log(document.getElementById("playersInput").value);
 }

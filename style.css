@@ -567,7 +567,6 @@ header .navigationLink:hover {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 1vw;
-
 }
 
 #makeGamenightForm #numberContainer .hexagon {
