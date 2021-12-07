@@ -11,6 +11,28 @@ window.onload = function () {
 
     //Add eventlisteners to buttons on homepage
     document.getElementById("addGameNight").addEventListener("click", (e) => {
-        console.log("Game night added!")
+        document.getElementById("gamenightOverview").style.display = "none";
+        document.getElementById("gamenightMaker").style.display = "block";
+
+        //Set event listeners of form
+        document.getElementById("addPlayerButton").addEventListener("click", (e) => addPlayer());
+        document.getElementById("removePlayerButton").addEventListener("click", (e) => removePlayer());
+
     })
+}
+
+function addPlayer() {
+    if (document.getElementById("playersInput").value < 8) {
+        document.getElementById("playersInput").value++;
+        document.getElementById("numberContainer").insertAdjacentHTML('beforeend', '<div class="hexagon"></div>');
+    }
+    console.log(document.getElementById("playersInput").value);
+}
+
+function removePlayer() {
+    if (document.getElementById("playersInput").value > 2) {
+        document.getElementById("playersInput").value--;
+        document.getElementById("numberContainer").removeChild(document.getElementById("numberContainer").lastChild);
+    }
+    console.log(document.getElementById("playersInput").value);
 }

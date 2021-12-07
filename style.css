@@ -1,4 +1,4 @@
-:root{
+:root {
     --background-color: #9c4300;
     --primary-color: #f1f1f1;
     --custom-black: #1e1e1e;
@@ -18,17 +18,13 @@ body {
 .hexagon {
     width: 3em;
     height: calc(3em * .8660254);
-    margin: .25em;
     color: var(--primary-color);
     position: relative;
     display: inline-block;
 }
-.hexagon:first-child {
-    margin-left: 0;
-}
-.hexagon:last-child {
-    margin-right: 0;
-}
+
+
+
 .hexagon::before,
 .hexagon:after {
     content: "";
@@ -40,6 +36,7 @@ body {
     transition: transform 1s;
     transform: rotate(0deg);
 }
+
 .hexagon::after {
     position: absolute;
     top: 0;
@@ -50,7 +47,7 @@ body {
     transform: rotate(0deg) scale(.9);
 }
 
-.hexagon > * {
+.hexagon>* {
     position: absolute;
     top: 0;
     left: 0;
@@ -63,16 +60,16 @@ body {
     justify-content: center;
 }
 
-.hexagon > svg {
+.hexagon>svg {
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
 
 /*////////////// Loader ///////////////////*/
 
 #loader,
-#loader > div {
+#loader>div {
     position: absolute;
     top: 0;
     left: 0;
@@ -85,52 +82,72 @@ body {
     overflow: hidden;
 }
 
-#loader > div {
+#loader>div {
     background-color: var(--background-color);
 }
+
 #loader .hexagon {
     font-size: 4em;
     animation: scaleIn .4s 1, loader 6s infinite .4s;
 }
-#loader.loaded > div {
+
+#loader.loaded>div {
     animation: scaleOut 1s 1 forwards;
 }
 
 @keyframes scaleIn {
-    from {transform: rotate(-60deg) scale(0);}
-    to {transform: rotate(0) scale(1);}
+    from {
+        transform: rotate(-60deg) scale(0);
+    }
+
+    to {
+        transform: rotate(0) scale(1);
+    }
 }
 
 @keyframes scaleOut {
-    from {transform: scale(1); opacity: 1;}
-    to {transform: scale(10); opacity: 0;}
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(10);
+        opacity: 0;
+    }
 }
 
 @keyframes loader {
     0% {
         transform: rotate(0deg);
     }
+
     16.67% {
         transform: rotate(60deg);
     }
+
     33.33% {
         transform: rotate(120deg);
     }
+
     50% {
         transform: rotate(180deg);
     }
+
     66.66% {
         transform: rotate(240deg);
     }
+
     83.33% {
         transform: rotate(300deg);
     }
+
     100% {
         transform: rotate(360deg);
-    }   
+    }
 }
 
-.container{
+.container {
     width: 86%;
     margin: 0 auto;
 }
@@ -138,7 +155,7 @@ body {
 /*///// Header /////*/
 header {
     position: absolute;
-    
+
     width: 100%;
     font-size: 30px;
     color: var(--primary-color);
@@ -146,14 +163,14 @@ header {
     text-transform: uppercase;
 }
 
-header>.container{
+header>.container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-header .hexagon>svg{
-    width: 1em!important;
+.hexagon>svg {
+    width: 1em !important;
 }
 
 header nav {
@@ -170,7 +187,7 @@ header ul {
 
 }
 
-header li{
+header li {
     margin: 0 1em 2px;
 }
 
@@ -180,10 +197,11 @@ header .navigationLink:hover {
 }
 
 
-#gamenightOverview {
+#gamenightOverview,
+#gamenightMaker {
     min-height: 100vh;
     background-color: var(--custom-black);
-    padding: 150px 7% 0 ;
+    padding: 150px 7% 0;
 
 }
 
@@ -261,19 +279,19 @@ header .navigationLink:hover {
 
 /* ///// Gamenight list ///// */
 
-#addGameNight{
+#addGameNight {
     background-color: var(--background-color);
     opacity: .7;
     transition: opacity .2s;
 }
 
 
-#addGameNight:hover{
+#addGameNight:hover {
     opacity: 1;
 }
 
 
-#addGameNight>p{
+#addGameNight>p {
     font-size: 15vw;
     margin: 0;
     text-align: center;
@@ -282,16 +300,17 @@ header .navigationLink:hover {
     position: absolute;
     top: 52%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 
-    color:var(--primary-color)
+    color: var(--primary-color)
 }
 
-.hex-gamenight{
+.hex-gamenight {
     background-size: cover;
     color: var(--custom-black);
 }
-.hex-gamenight>*{
+
+.hex-gamenight>* {
     position: absolute;
     top: 0;
     left: 0;
@@ -306,50 +325,53 @@ header .navigationLink:hover {
     justify-content: space-around;
 }
 
-.hex-gamenight p{
+.hex-gamenight p {
     margin: 0;
 }
 
-.homeGameNightInfo{
+.homeGameNightInfo {
     opacity: 0;
     transition: opacity .3s;
 }
 
-.sand .homeGameNightInfo{
+.sand .homeGameNightInfo {
     background-color: var(--sand-color);
 }
-.forest .homeGameNightInfo{
+
+.forest .homeGameNightInfo {
     background-color: var(--forest-color);
 }
-.water .homeGameNightInfo{
+
+.water .homeGameNightInfo {
     background-color: var(--water-color);
 }
-.stone .homeGameNightInfo{
+
+.stone .homeGameNightInfo {
     background-color: var(--stone-color);
 }
 
-.hex-gamenight:hover .homeGameNightInfo{
+.hex-gamenight:hover .homeGameNightInfo {
     opacity: 1;
 }
 
-.stone{
+.stone {
     background-color: var(--stone-color);
     background-image: url(./img/stone.svg);
 }
 
-.water{
+.water {
     background-image: url(./img/water.svg);
-    background-color:var(--water-color);
+    background-color: var(--water-color);
 }
 
-.sand{
+.sand {
     background-image: url(./img/sand.svg);
-    background-color:var(--sand-color);
+    background-color: var(--sand-color);
 }
 
-.forest{
+.forest {
     background-image: url(./img/forest.svg);
-    background-color:var(--forest-color);
+    background-color: var(--forest-color);
 }
 
 
@@ -526,6 +548,34 @@ header .navigationLink:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#makeGamenightForm .tab {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: no-wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#makeGamenightForm .tab>.hexagon {
+    font-size: 4.48vw;
+    margin: 0 7vw;
+}
+
+#makeGamenightForm #numberContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1vw;
+
+}
+
+#makeGamenightForm #numberContainer .hexagon {
+    font-size: 2.24vw;
+}
+
+#playersInput {
+    display: none;
 }
 
 

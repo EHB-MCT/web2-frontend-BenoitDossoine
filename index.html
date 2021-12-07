@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    
+
     <header>
         <div class="container">
             <div class="hexagon"><small>logo</small></div>
@@ -102,12 +102,24 @@
                             <p>18.00</p>
                         </div>
                     </div>
-                </li>  
+                </li>
             </ul>
         </section>
-        
+        <section id="gamenightMaker">
+            <form id="makeGamenightForm" action="">
+                <div class="tab">
+                    <input type="number" id="playersInput" value="2" min="2" max="8">
+                    <div class="hexagon" id="removePlayerButton"><i class="fas fa-user-minus"></i></div>
+                    <div id="numberContainer">
+                        <div class="hexagon"></div>
+                        <div class="hexagon"></div>
+                    </div>
+                    <div class="hexagon" id="addPlayerButton"><i class="fas fa-user-plus"></i></div>
+                </div>
+            </form>
+        </section>
         <section id="gamenights">
-            
+
             <div id="gamenightList">
                 <article class="gamenightCard">
                     <h1>Benoit's first gamenight!</h1>
