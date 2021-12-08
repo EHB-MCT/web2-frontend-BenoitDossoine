@@ -15,9 +15,22 @@ window.onload = function () {
         document.getElementById("gamenightMaker").style.display = "flex";
 
         //Set event listeners of form
-        document.getElementById("addPlayerButton").addEventListener("click", (e) => addPlayer());
-        document.getElementById("removePlayerButton").addEventListener("click", (e) => removePlayer());
-
+        document.getElementById("addPlayerButton").addEventListener("click", function (e) {
+            e.preventDefault();
+            addPlayer();
+        });
+        document.getElementById("removePlayerButton").addEventListener("click", function (e) {
+            e.preventDefault();
+            removePlayer();
+        });
+        document.getElementById("addTimeButton").addEventListener("click", function (e) {
+            e.preventDefault();
+            addTime();
+        });
+        document.getElementById("removeTimeButton").addEventListener("click", function (e) {
+            e.preventDefault();
+            removeTime();
+        });
     })
 }
 
@@ -32,5 +45,17 @@ function removePlayer() {
     if (document.getElementById("playersInput").value > 2) {
         document.getElementById("playersInput").value--;
         document.getElementById("numberContainer").removeChild(document.getElementById("numberContainer").lastChild);
+    }
+}
+
+function addTime() {
+    document.getElementById("timeInput").value = parseInt(document.getElementById("timeInput").value) + 30;
+    document.getElementById("timeContainer").getElementsByTagName("span")[0].innerHTML = document.getElementById("timeInput").value;
+}
+
+function removeTime() {
+    if (document.getElementById('timeInput').value > 30) {
+        document.getElementById("timeInput").value = parseInt(document.getElementById("timeInput").value) - 30;
+        document.getElementById("timeContainer").getElementsByTagName("span")[0].innerHTML = document.getElementById("timeInput").value;
     }
 }
