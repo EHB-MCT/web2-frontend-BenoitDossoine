@@ -12,7 +12,7 @@ window.onload = function () {
     //Add eventlisteners to buttons on homepage
     document.getElementById("addGameNight").addEventListener("click", (e) => {
         document.getElementById("gamenightOverview").style.display = "none";
-        document.getElementById("gamenightMaker").style.display = "block";
+        document.getElementById("gamenightMaker").style.display = "flex";
 
         //Set event listeners of form
         document.getElementById("addPlayerButton").addEventListener("click", (e) => addPlayer());
