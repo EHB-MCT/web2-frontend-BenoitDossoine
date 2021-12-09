@@ -1,4 +1,7 @@
-import Gamenight from "./Gamenight.js"
+import Gamenight from "./Gamenight.js";
+import "../node_modules/@fortawesome/fontawesome-free/js/brands.js";
+import "../node_modules/@fortawesome/fontawesome-free/js/solid.js";
+import "../node_modules/@fortawesome/fontawesome-free/js/fontawesome.js";
 
 // let loader = document.getElementById("loader");
 // setTimeout(() => {
