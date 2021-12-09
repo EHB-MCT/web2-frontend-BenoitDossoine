@@ -57,7 +57,7 @@ window.onload = function () {
     })
 
     document.getElementById("gamenightsLink").addEventListener("click", function (e) {
-        document.getElementById("gamenightsOverview").style.display = "block";
+        document.getElementById("gamenightOverview").style.display = "block";
         document.getElementById("gamenightMaker").style.display = "none";
         document.getElementById("library").style.display = "none";
     })
