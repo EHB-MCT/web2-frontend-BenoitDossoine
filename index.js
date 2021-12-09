@@ -1,3 +1,6 @@
+import Gamenight from "./Gamenight.js"
+
+
 // let loader = document.getElementById("loader");
 // setTimeout(() => {
 //     loader.classList.add("loaded");
@@ -45,8 +48,7 @@ window.onload = function () {
         })
         document.getElementById("formSubmit").addEventListener("click", function (e) {
             e.preventDefault();
-            let inputData = retrieveFormData();
-            console.log(inputData);
+            makeGamenight();
         })
 
 
@@ -100,6 +102,11 @@ function showTabs(n) {
     }
 }
 
+function makeGamenight() {
+    let gamenight = retrieveFormData();
+    console.log(gamenight.duration);
+}
+
 function retrieveFormData() {
     let amountOfPlayers = document.getElementById("playersInput").value;
     let duration = document.getElementById("timeInput").value;
@@ -117,14 +124,7 @@ function retrieveFormData() {
     let time = document.getElementById("gamenightTime").value;
     let date = document.getElementById("gamenightDate").value;
 
-    return {
-        name: name,
-        playerAmount: amountOfPlayers,
-        duration: duration,
-        categories: chosenCategories,
-        location: location,
-        time: time,
-        date: date
-    }
+    return new Gamenight(name, amountOfPlayers, duration, chosenCategories, location, time, date);
+
 
 }
