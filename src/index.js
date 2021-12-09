@@ -1,6 +1,5 @@
 import Gamenight from "./Gamenight.js"
 
-
 // let loader = document.getElementById("loader");
 // setTimeout(() => {
 //     loader.classList.add("loaded");
@@ -104,7 +103,8 @@ function showTabs(n) {
 
 function makeGamenight() {
     let gamenight = retrieveFormData();
-    console.log(gamenight.duration);
+    console.log(gamenight);
+
 }
 
 function retrieveFormData() {

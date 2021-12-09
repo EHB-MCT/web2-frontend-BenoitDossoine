@@ -1,0 +1,16 @@
+{
+    "1": {
+        "name": "Catan",
+        "duration": "120",
+        "minPlayerAmount": "2",
+        "maxPlayerAmount": "4",
+        "categories": ["competitive", "ressources"]
+    },
+    "2": {
+        "name": "Mysterium",
+        "duration": "60",
+        "minPlayerAmount": "2",
+        "maxPlayerAmount": "6",
+        "categories": ["horror", "cooperative"]
+    }
+}
