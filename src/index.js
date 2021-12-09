@@ -53,8 +53,13 @@ window.onload = function () {
             makeGamenight();
         })
 
-
         showTabs(0);
+    })
+
+    document.getElementById("gamenightsLink").addEventListener("click", function (e) {
+        document.getElementById("gamenightsOverview").style.display = "block";
+        document.getElementById("gamenightMaker").style.display = "none";
+        document.getElementById("library").style.display = "none";
     })
 }
 
@@ -106,7 +111,7 @@ function showTabs(n) {
 
 function makeGamenight() {
     let gamenight = retrieveFormData();
-    console.log(gamenight);
+    gamenight.buildGamenight();
 
 }
 
@@ -128,6 +133,4 @@ function retrieveFormData() {
     let date = document.getElementById("gamenightDate").value;
 
     return new Gamenight(name, amountOfPlayers, duration, chosenCategories, location, time, date);
-
-
 }
