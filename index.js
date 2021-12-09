@@ -1,10 +1,10 @@
-let loader = document.getElementById("loader");
-setTimeout(() => {
-    loader.classList.add("loaded");
-    setTimeout(() => {
-        loader.remove();
-    }, 1100);
-}, Math.random() * (4000 - 2000) + 2000);
+// let loader = document.getElementById("loader");
+// setTimeout(() => {
+//     loader.classList.add("loaded");
+//     setTimeout(() => {
+//         loader.remove();
+//     }, 1100);
+// }, Math.random() * (4000 - 2000) + 2000);
 
 window.onload = function () {
     console.log("Window loaded!");
@@ -13,6 +13,8 @@ window.onload = function () {
     document.getElementById("addGameNight").addEventListener("click", (e) => {
         document.getElementById("gamenightOverview").style.display = "none";
         document.getElementById("gamenightMaker").style.display = "flex";
+
+        let tabNumber = 0;
 
         //Set event listeners of form
         document.getElementById("addPlayerButton").addEventListener("click", function (e) {
@@ -31,6 +33,24 @@ window.onload = function () {
             e.preventDefault();
             removeTime();
         });
+        document.getElementById("formPrevious").addEventListener("click", function (e) {
+            e.preventDefault();
+            tabNumber--;
+            showTabs(tabNumber);
+        })
+        document.getElementById("formNext").addEventListener("click", function (e) {
+            e.preventDefault();
+            tabNumber++;
+            showTabs(tabNumber);
+        })
+        document.getElementById("formSubmit").addEventListener("click", function (e) {
+            e.preventDefault();
+            let inputData = retrieveFormData();
+            console.log(inputData);
+        })
+
+
+        showTabs(0);
     })
 }
 
@@ -58,4 +78,53 @@ function removeTime() {
         document.getElementById("timeInput").value = parseInt(document.getElementById("timeInput").value) - 30;
         document.getElementById("timeContainer").getElementsByTagName("span")[0].innerHTML = document.getElementById("timeInput").value;
     }
+}
+
+function showTabs(n) {
+    document.getElementsByClassName("tab")[n].style.display = "block";
+
+    if (n == 0) {
+        document.getElementById("formPrevious").disabled = true;
+    } else {
+        document.getElementsByClassName("tab")[n - 1].style.display = "none";
+        document.getElementById("formPrevious").disabled = false;
+    }
+
+    if (n == document.getElementsByClassName("tab").length - 1) {
+        document.getElementById("formNext").style.display = "none";
+        document.getElementById("formSubmit").style.display = "block";
+    } else {
+        document.getElementsByClassName("tab")[n + 1].style.display = "none";
+        document.getElementById("formNext").style.display = "block";
+        document.getElementById("formSubmit").style.display = "none";
+    }
+}
+
+function retrieveFormData() {
+    let amountOfPlayers = document.getElementById("playersInput").value;
+    let duration = document.getElementById("timeInput").value;
+    let allCategories = document.getElementsByClassName("formCategory");
+    let chosenCategories = [];
+
+    for (let category of allCategories) {
+        if (category.checked) {
+            chosenCategories.push(category.id);
+        };
+    }
+
+    let name = document.getElementById("gamenightName").value;
+    let location = document.getElementById("gamenightLocation").value;
+    let time = document.getElementById("gamenightTime").value;
+    let date = document.getElementById("gamenightDate").value;
+
+    return {
+        name: name,
+        playerAmount: amountOfPlayers,
+        duration: duration,
+        categories: chosenCategories,
+        location: location,
+        time: time,
+        date: date
+    }
+
 }

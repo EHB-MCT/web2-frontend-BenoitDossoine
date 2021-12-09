@@ -31,11 +31,11 @@
         </div>
     </header>
     <main>
-        <div id="loader">
+        <!-- <div id="loader">
             <div>
                 <div class="hexagon"></div>
             </div>
-        </div>
+        </div> -->
         <section id="gamenightOverview">
             <ul class="hex-grid__list">
                 <li class="hex-grid__item">
@@ -110,34 +110,85 @@
                 <div class="tab">
                     <p>How many players?</p>
                     <input type="number" id="playersInput" value="2" min="2" max="8">
-                    <div>
-                        <button class="hexagon" id="removePlayerButton"><i class="fas fa-user-minus"></i></button>
-                    </div>
-                    <div id="numberContainer">
-                        <div class="hexagon"></div>
-                        <div class="hexagon"></div>
-                    </div>
-                    <div>
-                        <button class="hexagon" id="addPlayerButton"><i class="fas fa-user-plus"></i></button>
+                    <div class="formItemContainer">
+                        <div>
+                            <button class="hexagon" id="removePlayerButton"><i class="fas fa-user-minus"></i></button>
+                        </div>
+                        <div id="numberContainer">
+                            <div class="hexagon"></div>
+                            <div class="hexagon"></div>
+                        </div>
+                        <div>
+                            <button class="hexagon" id="addPlayerButton"><i class="fas fa-user-plus"></i></button>
+                        </div>
                     </div>
                 </div>
                 <div class="tab">
                     <p>How much time do you have?</p>
                     <input type="number" id="timeInput" value="60" min="30">
-                    <div>
-                        <button class="hexagon" id="removeTimeButton"><i class="fas fa-minus"></i></button>
+                    <div class="formItemContainer">
+                        <div>
+                            <button class="hexagon" id="removeTimeButton"><i class="fas fa-minus"></i></button>
+                        </div>
+                        <div id="timeContainer" class="unselectable">
+                            <p><span>60</span> min</p>
+                        </div>
+                        <div>
+                            <button class="hexagon" id="addTimeButton"><i class="fas fa-plus"></i></button>
+                        </div>
                     </div>
-                    <div id="timeContainer" class="unselectable">
-                        <p><span>60</span> min</p>
+                </div>
+                <div class="tab">
+                    <p>What kind of games do you want to play?</p>
+                    <div id="categoryContainer">
 
+                        <input type="checkbox" name="adventure" id="adventure" class="formCategory">
+                        <label for="adventure" class="hexagon"><i class="fas fa-binoculars"></i>
+                            <p>Adventure</p>
+                        </label>
+                        <input type="checkbox" name="fantasy" id="fantasy" class="formCategory">
+                        <label for="fantasy" class="hexagon"><i class="fas fa-dragon"></i>
+                            <p>Fantasy</p>
+                        </label>
+                        <input type="checkbox" name="combat" id="combat" class="formCategory">
+                        <label for="combat" class="hexagon"><i class="fas fa-fist-raised"></i>
+                            <p>Combat</p>
+                        </label>
+                        <input type="checkbox" name="horror" id="horror" class="formCategory">
+                        <label for="horror" class="hexagon"><i class="fas fa-ghost"></i>
+                            <p>Horror</p>
+                        </label>
+                        <input type="checkbox" name="competitive" id="competitive" class="formCategory">
+                        <label for="competitive" class="hexagon"><i class="fas fa-trophy"></i>
+                            <p>Competitive</p>
+                        </label>
+                        <input type="checkbox" name="cooperation" id="cooperation" class="formCategory">
+                        <label for="cooperation" class="hexagon"><i class="fas fa-users"></i>
+                            <p>Cooperation</p>
+                        </label>
                     </div>
-                    <div>
-                        <button class="hexagon" id="addTimeButton"><i class="fas fa-plus"></i></button>
+                </div>
+                <div class="tab">
+                    <p>Last few practicalities...</p>
+                    <div id="practicalContainer">
+                        <div>
+                            <input type="text" name="gamenightName" id="gamenightName"
+                                placeholder="Name your gamenight">
+                            <input type="text" name="gamenightLocation" id="gamenightLocation"
+                                placeholder="Where are you playing?">
+                        </div>
+                        <div>
+                            <input type="date" name="gamenightDate" id="gamenightDate">
+                            <input type="time" name="gamenightTime" id="gamenightTime">
+                        </div>
                     </div>
                 </div>
                 <div id="formNavigation">
-                    <div class="hexagon" id="formPrevious"><i class="fas fa-arrow-left"></i></div>
-                    <div class="hexagon" id="formPrevious"><i class="fas fa-arrow-right"></i></div>
+                    <button class="hexagon" id="formPrevious" disabled><i class="fas fa-arrow-left"></i></button>
+                    <button class="hexagon" id="formNext"><i class="fas fa-arrow-right"></i></button>
+                    <div class="hexagon" id="formSubmit"><input type="submit" class="fas fa-check" id="formSubmitBtn"
+                            value="&#xf00c">
+                    </div>
                 </div>
             </form>
         </section>
