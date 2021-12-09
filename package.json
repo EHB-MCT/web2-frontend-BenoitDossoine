@@ -18,5 +18,9 @@
   "homepage": "https://github.com/EHB-MCT/web2-frontend-BenoitDossoine#readme",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4"
+  },
+  "devDependencies": {
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
   }
 }
