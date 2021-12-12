@@ -61,6 +61,13 @@ window.onload = function () {
         document.getElementById("gamenightMaker").style.display = "none";
         document.getElementById("library").style.display = "none";
     })
+
+    document.getElementById("libraryLink").addEventListener("click", function (e) {
+        document.getElementById("gamenightOverview").style.display = "none";
+        console.log(document.getElementById("gamenightOverview"));
+        document.getElementById("gamenightMaker").style.display = "none";
+        document.getElementById("library").style.display = "block";
+    })
 }
 
 function addPlayer() {

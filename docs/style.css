@@ -214,12 +214,12 @@ header .navigationLink:hover {
 
 
 #gamenightOverview,
-#gamenightMaker {
+#gamenightMaker,
+#library {
     min-height: 100vh;
     background-color: var(--custom-black);
     padding: 150px 7% 0;
     box-sizing: border-box;
-
 }
 
 /*///// Big hexagons on homepage --> see sources /////*/
@@ -675,7 +675,6 @@ header .navigationLink:hover {
 
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-
 }
 
 #makeGamenightForm #categoryContainer label {
@@ -740,6 +739,10 @@ input[type="checkbox"]:checked+.hexagon:after {
     display: none;
 }
 
+
+section#library {
+    display: none;
+}
 
 section#gamenights {
     display: none;
