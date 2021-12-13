@@ -318,14 +318,44 @@
             </div>
         </section>
         <section id="library">
-            <div class="libraryBtns">
+            <div id="libraryBtns">
                 <button id="newGame">New Game</button>
-                <input type="text" id="searchGame">
+                <input type="text" id="searchGame" placeholder="Search">
                 <select name="filterGames" id="filterGames">
                     <option value="player"># players</option>
                     <option value="duration">Duration</option>
                     <option value="alphabet">A - Z</option>
                 </select>
+            </div>
+            <div id="libraryContainer">
+                <article class="game">
+                    <div class="gameImgContainer">
+                        <img src="https://via.placeholder.com/400x475" alt="" class="gameImg">
+                    </div>
+                    <div class="gameStats">
+                        <h1>Colonists of Catan</h1>
+                        <p>Settlers of Catan is a combination of strategy and resource management. You need the right
+                            materials to build houses and roads and gain victory points. The luck of the die throw
+                            drives these resources and determines how many settlements and roads you can build, which in
+                            turn accrue more resources.</p>
+                        <div class="gamePlayers">
+                            <h2>Players:</h2>
+                            <p>2 to 4 players</p>
+                        </div>
+                        <div class="gameDuration">
+                            <h2>Duration:</h2>
+                            <p>120 min</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div id="newGameForm">
+                <form action="" id="newGameSearch"><input type="text" id="newGameSearchInput"
+                        placeholder="Search game by name">
+                    <input type="submit" value="Search"></form>
+                <div id="newGameResults">
+
+                </div>
             </div>
         </section>
     </main>

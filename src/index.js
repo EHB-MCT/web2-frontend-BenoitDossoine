@@ -1,7 +1,9 @@
+'use strict';
 import Gamenight from "./Gamenight.js";
 import "../node_modules/@fortawesome/fontawesome-free/js/brands.js";
 import "../node_modules/@fortawesome/fontawesome-free/js/solid.js";
 import "../node_modules/@fortawesome/fontawesome-free/js/fontawesome.js";
+
 
 // let loader = document.getElementById("loader");
 // setTimeout(() => {
@@ -64,9 +66,18 @@ window.onload = function () {
 
     document.getElementById("libraryLink").addEventListener("click", function (e) {
         document.getElementById("gamenightOverview").style.display = "none";
-        console.log(document.getElementById("gamenightOverview"));
         document.getElementById("gamenightMaker").style.display = "none";
         document.getElementById("library").style.display = "block";
+    })
+
+    document.getElementById("newGame").addEventListener("click", function (e) {
+
+    })
+
+    document.getElementById("newGameSearch").addEventListener("submit", async function (e) {
+        e.preventDefault();
+        const searchString = document.getElementById("newGameSearchInput").value;
+        await retrieveNewGames(searchString);
     })
 }
 
@@ -140,4 +151,60 @@ function retrieveFormData() {
     let date = document.getElementById("gamenightDate").value;
 
     return new Gamenight(name, amountOfPlayers, duration, chosenCategories, location, time, date);
+}
+
+async function retrieveNewGames(searchString) {
+    console.log(searchString);
+    const resultContainer = document.getElementById("newGameResults");
+    resultContainer.innerHTML = "";
+    if (searchString == "") {
+        resultContainer.innerHTML = '<p>Start typing to get results</p>';
+    } else {
+        const base_url = "https://api.boardgameatlas.com/api/search?pretty=true&client_id=gFnN3Fklrw&name="
+        let searchResult = await fetch(base_url + searchString)
+            .then(response => response.json())
+            .then(data => data.games);
+        searchResult = searchResult.splice(0, 6);
+        for (let game of searchResult) {
+            let htmlString = `<div class="newGame" data-id="${game.id}">
+            <div class="newGameImgContainer">
+                <img src="${game.images.small}"
+                    alt="" class="newGameImg">
+            </div>
+            <div class="newGameName">
+                <p>${game.name}</p>
+            </div>
+            <div class="newGameAdd">
+                <button class="hexagon addGameBtn" data-id="${game.id}"><i class="fas fa-plus"></i></button>
+            </div>
+        </div>`;
+            resultContainer.insertAdjacentHTML("beforeend", htmlString);
+        }
+        initAddBtns(searchResult);
+    }
+
+}
+
+function initAddBtns(searchResult) {
+
+    let addBtns = document.getElementsByClassName("addGameBtn");
+    for (let addBtn of addBtns) {
+        addBtn.addEventListener("click", async (e) => {
+            e.preventDefault();
+            let gameId = addBtn.getAttribute("data-id");
+            let game = searchResult.filter(game => game.id == gameId)[0];
+            let body = {
+                boardgame: game
+            };
+            console.log(game)
+            const result = await fetch('https://web2-gamenightapp-api.herokuapp.com/user/61b25e0da1a92d69d4d3fca5/boardgames', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }, // 'Content-Type': 'application/x-www-form-urlencoded',},
+                body: JSON.stringify(body)
+            });
+            console.log(result);
+        })
+    }
 }
