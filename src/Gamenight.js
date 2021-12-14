@@ -1,36 +1,35 @@
 class Gamenight {
-    constructor(gamenightName, playerAmount, duration, categories, location, time, date) {
-        this.name = gamenightName;
-        this.playerAmount = playerAmount;
-        this.duration = duration;
-        this.categories = categories;
-        this.location = location;
-        this.time = time;
-        this.date = date;
-        this.games = [];
+    constructor(gamenight) {
+        this.id = gamenight._id;
+        this.name = gamenight.name;
+        this.playerAmount = gamenight.amountOfPlayers;
+        this.duration = gamenight.duration;
+        this.categories = gamenight.categories;
+        this.location = gamenight.location;
+        this.time = gamenight.time;
+        this.date = gamenight.date;
+        this.games = gamenight.games;
+        this.color = this.getRandomColor();
     }
 
-    async buildGamenight() {
-        let boardgames = await this.getBoardgames();
-        console.log(boardgames);
+    getTileHtml() {
+        const htmlString =
+            `<li class="hex-grid__item" id="${this.id}">
+                <div class="hex-grid__content hex-gamenight ${this.color}">
+                    <h3>${this.name}</h3>
+                    <div class="homeGameNightInfo">
+                        <p>${this.date}</p>
+                        <p>${this.location}</p>
+                        <p>${this.time}</p>
+                    </div>
+                </div>
+            </li>`
+        return htmlString;
     }
 
-    //get all boardgames
-    async getBoardgames() {
-        let boardgames = await fetch("./boardgames.json")
-            .then(response => response.json());
-
-        let chosenBoardgames = [];
-        for (let boardgame in boardgames) {
-            for (let category of boardgames[boardgame].categories) {
-                if (this.categories.includes(category)) {
-                    chosenBoardgames.push(boardgames[boardgame]);
-                    break;
-                }
-            }
-        }
-
-        return chosenBoardgames;
+    getRandomColor() {
+        let tileColors = ['stone', 'water', 'sand', 'forest'];
+        return tileColors[Math.floor(Math.random() * tileColors.length)];
     }
 }
 

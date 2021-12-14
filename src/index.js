@@ -89,7 +89,7 @@ window.onload = function () {
         document.getElementById("newGameForm").style.display = "none";
         document.getElementById("libraryContainer").style.display = "grid";
     })
-
+    initGamenights();
     initLibrary();
 }
 
@@ -220,6 +220,30 @@ function initAddBtns(searchResult) {
         })
     }
 }
+
+async function initGamenights() {
+    const userGamenights = await getUserGamenights();
+    showUserGamenights(userGamenights);
+}
+
+async function getUserGamenights() {
+    const userGamenights = await fetch('https://web2-gamenightapp-api.herokuapp.com/user/61b25e0da1a92d69d4d3fca5/gamenights')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach((element, index) => {
+                data[index] = new Gamenight(element);
+            })
+            return data;
+        });
+    return userGamenights;
+}
+
+async function showUserGamenights(userGamenights) {
+    userGamenights.forEach(element => {
+        document.getElementById("gamenightContainer").insertAdjacentHTML('beforeend', element.getTileHtml())
+    });
+}
+
 async function initLibrary() {
     const userBoardgames = await getGames();
     showGames(userBoardgames);
