@@ -1,5 +1,6 @@
 'use strict';
 import Gamenight from "./Gamenight.js";
+import Game from "./Game.js";
 import "../node_modules/@fortawesome/fontawesome-free/js/brands.js";
 import "../node_modules/@fortawesome/fontawesome-free/js/solid.js";
 import "../node_modules/@fortawesome/fontawesome-free/js/fontawesome.js";
@@ -71,7 +72,8 @@ window.onload = function () {
     })
 
     document.getElementById("newGame").addEventListener("click", function (e) {
-
+        document.getElementById("newGameForm").style.display = "grid";
+        document.getElementById("libraryContainer").style.display = "none";
     })
 
     document.getElementById("newGameSearch").addEventListener("submit", async function (e) {
@@ -79,6 +81,16 @@ window.onload = function () {
         const searchString = document.getElementById("newGameSearchInput").value;
         await retrieveNewGames(searchString);
     })
+
+    document.getElementById("exitNewGameForm").addEventListener("click", function (e) {
+        e.preventDefault();
+        document.getElementById("newGameSearchInput").value = "";
+        document.getElementById("newGameResults").innerHTML = "";
+        document.getElementById("newGameForm").style.display = "none";
+        document.getElementById("libraryContainer").style.display = "grid";
+    })
+
+    initLibrary();
 }
 
 function addPlayer() {
@@ -201,10 +213,33 @@ function initAddBtns(searchResult) {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
-                }, // 'Content-Type': 'application/x-www-form-urlencoded',},
+                },
                 body: JSON.stringify(body)
             });
             console.log(result);
         })
     }
+}
+async function initLibrary() {
+    const userBoardgames = await getGames();
+    showGames(userBoardgames);
+}
+
+async function getGames() {
+    const userBoardgamesId = await fetch('https://web2-gamenightapp-api.herokuapp.com/user/61b25e0da1a92d69d4d3fca5/boardgames')
+        .then(response => response.json());
+    let userBoardgames = [];
+    for (let userBoardgameId of userBoardgamesId) {
+        const userBoardgame = new Game(await fetch(`https://web2-gamenightapp-api.herokuapp.com/boardgames/${userBoardgameId}`)
+            .then(response => response.json()));
+        userBoardgame.getHtmlString();
+        userBoardgames.push(userBoardgame);
+    }
+    return userBoardgames;
+}
+
+async function showGames(userBoardgames) {
+    userBoardgames.forEach(element => {
+        document.getElementById("libraryContainer").insertAdjacentHTML('beforeend', element.htmlString);
+    })
 }
