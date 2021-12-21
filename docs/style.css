@@ -788,11 +788,13 @@ article.game {
 article.game .gameImgContainer {
     position: relative;
     grid-column: 1/span 3;
+    background-color: white;
+
 }
 
 article.game .gameImg {
-    max-height: 100%;
-    max-width: 100%;
+    max-height: 95%;
+    max-width: 95%;
     width: auto;
     height: auto;
     position: absolute;
@@ -809,6 +811,7 @@ article.game .gameStats {
 
 article.game .gameStats h1 {
     font-size: 2em;
+    margin-bottom: 0.5em;
 }
 
 article.game .gameStats h2 {
@@ -818,14 +821,25 @@ article.game .gameStats h2 {
 
 article.game .gameStats p {
     font-size: 1em;
+    margin: 0;
+}
+
+article.game .gameStats a {
     margin-top: 0;
+    margin-bottom: 1em;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.gameStats .gameDuration {
+    margin-bottom: 2em;
 }
 
 #newGameForm {
     position: absolute;
     top: 0;
     left: 0;
-    margin: 150px 7% 250pxc;
+    margin: 150px 7% 250px;
     padding: 1vw 0;
     box-sizing: border-box;
     width: 86%;
@@ -900,6 +914,7 @@ article.game .gameStats p {
     height: 100%;
     position: relative;
     overflow: hidden;
+    background-color: white;
 }
 
 .newGame .newGameImg {
@@ -925,6 +940,10 @@ article.game .gameStats p {
 .newGame .newGameAdd>.hexagon {
     /* width: 100%; */
     font-size: 120%;
+}
+
+.newGameAdd>.addedGame:after {
+    background-color: var(--forest-color);
 }
 
 section#gamenights {

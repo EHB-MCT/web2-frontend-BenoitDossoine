@@ -5,11 +5,12 @@ class Game {
         this.imgUrl = game.imgUrl;
         this.minPlayers = game.minPlayers;
         this.maxPlayers = game.maxPlayers;
-        this.playTime = game.playTime;
+        this.playTime = game.playtime;
         this.description = game.description;
         this.categoryIds = game.categories;
         this.categories = [];
         this.htmlString = "";
+        this.shortHtmlString = "";
     }
 
     getCategories() {
@@ -25,7 +26,7 @@ class Game {
         </div>
         <div class="gameStats">
             <h1>${this.name}</h1>
-            <p>${this.description}</p>
+            <p>${this.description.substring(0,250)}...</p> <a>See more</a>
             <div class="gamePlayers">
                 <h2>Players:</h2>
                 <p>${this.minPlayers} to ${this.maxPlayers} players</p>
@@ -38,6 +39,7 @@ class Game {
     </article>`;
         return this.htmlString;
     }
+
 }
 
 export default Game;
