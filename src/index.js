@@ -7,6 +7,7 @@ import "../node_modules/@fortawesome/fontawesome-free/js/brands.js";
 import "../node_modules/@fortawesome/fontawesome-free/js/solid.js";
 import "../node_modules/@fortawesome/fontawesome-free/js/fontawesome.js";
 
+const lodash = require('lodash');
 
 // let loader = document.getElementById("loader");
 // setTimeout(() => {
@@ -91,9 +92,11 @@ window.onload = async function () {
         document.getElementById("newGameForm").style.display = "none";
         document.getElementById("libraryContainer").style.display = "grid";
     })
+
     const library = new Library;
     await library.getUserBoardgames();
     await library.showUserBoardgames();
+    await library.getCategories();
     initGamenights();
 }
 
@@ -143,10 +146,18 @@ function showTabs(n) {
     }
 }
 
-function makeGamenight() {
+async function makeGamenight() {
     let gamenight = retrieveFormData();
-    gamenight.buildGamenight();
-
+    gamenight.ownerId = "61b25e0da1a92d69d4d3fca5";
+    console.log(gamenight);
+    let response = await fetch('https://web2-gamenightapp-api.herokuapp.com/gamenights', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(gamenight)
+    });
+    let result = await response.json();
 }
 
 function retrieveFormData() {
@@ -166,7 +177,15 @@ function retrieveFormData() {
     let time = document.getElementById("gamenightTime").value;
     let date = document.getElementById("gamenightDate").value;
 
-    return new Gamenight(name, amountOfPlayers, duration, chosenCategories, location, time, date);
+    return {
+        name: name,
+        location: location,
+        time: time,
+        date: date,
+        amountOfPlayers: amountOfPlayers,
+        duration: duration,
+        categories: chosenCategories
+    }
 }
 
 async function initGamenights() {

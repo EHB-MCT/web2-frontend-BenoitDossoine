@@ -31,6 +31,10 @@ class Gamenight {
         let tileColors = ['stone', 'water', 'sand', 'forest'];
         return tileColors[Math.floor(Math.random() * tileColors.length)];
     }
+
+    buildGamenight() {
+        console.log(this.name, this.duration);
+    }
 }
 
 export default Gamenight;

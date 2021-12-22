@@ -1,8 +1,10 @@
 import Game from './Game.js';
+const lodash = require('lodash');
 
 class Library {
     constructor() {
         this.libraryBoardgames = [];
+        this.libraryCategories = [];
     }
 
     async getUserBoardgames() {
@@ -16,6 +18,16 @@ class Library {
         this.libraryBoardgames.forEach(element => {
             document.getElementById("libraryContainer").insertAdjacentHTML('beforeend', element.getHtmlString());
         })
+    }
+
+    async getCategories() {
+        for (let boardgame of this.libraryBoardgames) {
+            this.libraryCategories = lodash.flatten(lodash.concat([this.libraryCategories], boardgame.categoryIds));
+        }
+        this.libraryCategories = lodash.uniq(this.libraryCategories)
+        let allCategories = await fetch('https://web2-gamenightapp-api.herokuapp.com/categories')
+            .then(response => response.json())
+        this.libraryCategories = allCategories.filter(category => this.libraryCategories.some(categoryId => categoryId == category._id));
     }
 
     async retrieveNewGames(searchString) {
