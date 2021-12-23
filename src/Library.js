@@ -75,16 +75,18 @@ class Library {
                         boardgame: game
                     };
                     game = await fetch('https://web2-gamenightapp-api.herokuapp.com/user/61b25e0da1a92d69d4d3fca5/boardgames', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(body)
-                    }).then(response => console.log(response));
-                    console.log(game.response.json());
-                    this.libraryBoardgames.push(new Game(game.response.json()));
-                    console.log(this.libraryBoardgames);
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(body)
+                        })
+                        .then(response => response.json())
+                        .then(data => this.libraryBoardgames.push(new Game(data)));
                     await this.showUserBoardgames();
+
+                    btn.classList.add("addedGame");
+                    btn.innerHTML = '<i class="fas fa-check"></i>';
                 }
             }
         });
@@ -105,8 +107,9 @@ class Library {
                 await fetch(`https://web2-gamenightapp-api.herokuapp.com/user/61b25e0da1a92d69d4d3fca5/boardgames/${gameId}`, {
                     method: 'DELETE'
                 });
-                this.libraryBoardgames = this.libraryBoardgames.filter(boardgame => boardgame._id != gameId);
-                this.showUserBoardgames();
+
+                this.libraryBoardgames = this.libraryBoardgames.filter(boardgame => boardgame.id != gameId);
+                await this.showUserBoardgames();
             }
         })
     }
