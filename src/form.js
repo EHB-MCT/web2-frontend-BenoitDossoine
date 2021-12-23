@@ -1,7 +1,12 @@
 "use strict";
+
+const {
+    default: Gamenight
+} = require('./Gamenight');
+
 let tabNumber;
 //reset function otherwise the form retains the info from last time
-function reset() {
+function reset(categories) {
     tabNumber = 0;
     //Reset the amount of players
     document.getElementById("numberContainer").innerHTML = '<div class="hexagon"></div><div class="hexagon"></div>';
@@ -14,6 +19,8 @@ function reset() {
     for (let checkbox of categoryCheckboxes) {
         checkbox.checked = false;
     }
+
+    fillFormCategories(categories);
 
     document.getElementById("gamenightName").value = "";
     document.getElementById("gamenightLocation").value = "";
@@ -53,6 +60,17 @@ function init() {
         e.preventDefault();
         makeGamenight();
     })
+}
+
+function fillFormCategories(categories) {
+    document.getElementById("categoryContainer").innerHTML = "";
+    for (let category of categories) {
+        const html = `<input type="checkbox" name="${category.name.toLowerCase()}" id="${category.name.toLowerCase()}" class="formCategory">
+        <label for="${category.name.toLowerCase()}" class="hexagon">${getCategoryIcon(category.name)}
+            <p style="font-size:${category.name.length>11?20:30}px">${category.name}</p>
+        </label>`
+        document.getElementById("categoryContainer").insertAdjacentHTML('beforeend', html);
+    }
 }
 
 function addPlayer() {
@@ -108,7 +126,6 @@ function showTabs(n) {
 async function makeGamenight() {
     let gamenight = retrieveFormData();
     gamenight.ownerId = "61b25e0da1a92d69d4d3fca5";
-    console.log(gamenight);
     let response = await fetch('https://web2-gamenightapp-api.herokuapp.com/gamenights', {
         method: 'POST',
         headers: {
@@ -116,7 +133,15 @@ async function makeGamenight() {
         },
         body: JSON.stringify(gamenight)
     });
-    let result = await response.json();
+    if (response.status == "204") {
+        alert('There are no games in your library that fit your parameters.');
+    } else if (response.status == "400") {
+        alert('Please fill in the form correctly.');
+    } else if (response.ok) {
+        gamenight = await response.json();
+        const builtGamenight = new Gamenight(gamenight);
+        showGamenight(builtGamenight);
+    }
 }
 
 function retrieveFormData() {
@@ -145,6 +170,33 @@ function retrieveFormData() {
         duration: duration,
         categories: chosenCategories
     }
+}
+
+function getCategoryIcon(category) {
+    let icon = '';
+    switch (category) {
+        case "Adventure":
+            icon = '<i class="fas fa-binoculars"></i>'
+            break;
+        case "Fantasy":
+            icon = '<i class="fas fa-dragon"></i>'
+            break;
+        case "Combat":
+            icon = '<i class="fas fa-fist-raised"></i>'
+            break;
+        case "Horror":
+            icon = '<i class="fas fa-ghost"></i>'
+            break;
+        case "Competitive":
+            icon = '<i class="fas fa-trophy"></i>'
+            break;
+        case "Cooperation":
+            icon = '<i class="fas fa-users"></i>'
+            break;
+        default:
+            icon = `<i>${category.charAt(0)}</i>`
+    }
+    return icon;
 }
 
 module.exports = {

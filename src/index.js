@@ -26,7 +26,7 @@ window.onload = async function () {
     document.getElementById("addGameNight").addEventListener("click", (e) => {
         document.getElementById("gamenightOverview").style.display = "none";
         document.getElementById("gamenightMaker").style.display = "flex";
-        form.reset();
+        form.reset(library.libraryCategories);
         form.showTabs(0);
     })
 
@@ -61,16 +61,14 @@ window.onload = async function () {
         document.getElementById("libraryContainer").style.display = "grid";
     })
 
-    form.init();
-
     const library = new Library;
     await library.getUserBoardgames();
     await library.showUserBoardgames();
     await library.getCategories();
+
     initGamenights();
+    form.init();
 }
-
-
 
 async function initGamenights() {
     const userGamenights = await getUserGamenights();

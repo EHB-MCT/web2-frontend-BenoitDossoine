@@ -169,7 +169,7 @@ body {
 
 /*///// Header /////*/
 header {
-    position: fixed;
+    /* position: fixed; */
     z-index: 2;
     height: 10vh;
     width: 100%;
@@ -216,9 +216,10 @@ header .navigationLink:hover {
 #gamenightOverview,
 #gamenightMaker,
 #library {
-    min-height: 100vh;
+    /* min-height: 100vh; */
+    margin-top: 100px;
     background-color: var(--custom-black);
-    padding: 150px 7% 0;
+    padding: 0 7% 0;
     box-sizing: border-box;
 }
 
@@ -572,8 +573,6 @@ header .navigationLink:hover {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    height: 100vh;
-    padding-top: 10vh;
 }
 
 #makeGamenightForm {
@@ -671,21 +670,27 @@ header .navigationLink:hover {
 
 #makeGamenightForm #categoryContainer {
     width: 100%;
-    margin: 0 0 4.48vw;
 
     display: grid;
     grid-template-columns: repeat(6, 1fr);
+    row-gap: 2.24vw;
 }
 
 #makeGamenightForm #categoryContainer label {
     font-size: 2.24vw !important;
+    margin-bottom: 4vw;
     align-self: center;
     justify-self: center;
 }
 
 #makeGamenightForm #categoryContainer label p {
-    margin: 4.48vw 0 0;
+    margin: 5.5vw 0 0;
     font-size: 0.7em;
+    text-align: center;
+}
+
+input[type="checkbox"]+.hexagon>i {
+    font-style: normal;
 }
 
 input[type="checkbox"]:checked+.hexagon>svg {
@@ -694,6 +699,11 @@ input[type="checkbox"]:checked+.hexagon>svg {
 
 input[type="checkbox"]:checked+.hexagon:after {
     background-color: var(--primary-color);
+}
+
+input[type="checkbox"]:checked+.hexagon>i {
+    color: var(--custom-black);
+    font-style: normal;
 }
 
 #makeGamenightForm #practicalContainer {
@@ -833,6 +843,21 @@ article.game .gameStats a {
 
 .gameStats .gameDuration {
     margin-bottom: 2em;
+}
+
+article.game button.deleteLibraryGame {
+    align-self: end;
+    justify-self: center;
+    font-size: 1vw;
+    margin-bottom: 2rem;
+}
+
+article.game button.deleteLibraryGame:hover {
+    color: var(--custom-black);
+}
+
+article.game button.deleteLibraryGame:after:hover {
+    background-color: var(--primary-color);
 }
 
 #newGameForm {
