@@ -18,6 +18,7 @@ class Library {
         this.libraryBoardgames.forEach(element => {
             document.getElementById("libraryContainer").insertAdjacentHTML('beforeend', element.getHtmlString());
         })
+        this.initDeleteBtns();
     }
 
     async getCategories() {
@@ -73,14 +74,15 @@ class Library {
                     let body = {
                         boardgame: game
                     };
-                    await fetch('https://web2-gamenightapp-api.herokuapp.com/user/61b25e0da1a92d69d4d3fca5/boardgames', {
+                    game = await fetch('https://web2-gamenightapp-api.herokuapp.com/user/61b25e0da1a92d69d4d3fca5/boardgames', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify(body)
-                    });
-                    await this.getUserBoardgames();
+                    }).then(response => console.log(response));
+                    console.log(game.response.json());
+                    this.libraryBoardgames.push(new Game(game.response.json()));
                     console.log(this.libraryBoardgames);
                     await this.showUserBoardgames();
                 }
@@ -92,6 +94,21 @@ class Library {
     async checkGameInLibrary(gameId) {
         return this.libraryBoardgames.some(game => game.id == gameId);
     }
-}
 
+    async initDeleteBtns() {
+        const boardgamesContainer = document.getElementById("libraryContainer");
+        boardgamesContainer.addEventListener("click", async (e) => {
+            e.preventDefault();
+            let btn = e.target.closest(".deleteLibraryGame");
+            if (btn) {
+                let gameId = btn.getAttribute("data-id");
+                await fetch(`https://web2-gamenightapp-api.herokuapp.com/user/61b25e0da1a92d69d4d3fca5/boardgames/${gameId}`, {
+                    method: 'DELETE'
+                });
+                this.libraryBoardgames = this.libraryBoardgames.filter(boardgame => boardgame._id != gameId);
+                this.showUserBoardgames();
+            }
+        })
+    }
+}
 export default Library;

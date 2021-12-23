@@ -1,7 +1,7 @@
 'use strict';
-import Gamenight from "./Gamenight.js";
-import Game from "./Game.js";
+import GamenightList from "./GamenightList";
 import Library from "./Library.js";
+import Gamenight from "./Gamenight";
 
 import * as form from "./form"
 
@@ -34,12 +34,15 @@ window.onload = async function () {
         document.getElementById("gamenightOverview").style.display = "block";
         document.getElementById("gamenightMaker").style.display = "none";
         document.getElementById("library").style.display = "none";
+        document.getElementById("gamenights").style.display = "none";
+        initGamenightTiles();
     })
 
     document.getElementById("libraryLink").addEventListener("click", function (e) {
         document.getElementById("gamenightOverview").style.display = "none";
         document.getElementById("gamenightMaker").style.display = "none";
         document.getElementById("library").style.display = "block";
+        document.getElementById("gamenights").style.display = "none";
     })
 
     document.getElementById("newGame").addEventListener("click", function (e) {
@@ -66,29 +69,28 @@ window.onload = async function () {
     await library.showUserBoardgames();
     await library.getCategories();
 
-    initGamenights();
+    const gamenightList = new GamenightList;
+    await gamenightList.init();
+    await gamenightList.showUserGamenights();
+    initGamenightTiles();
+
     form.init();
 }
 
-async function initGamenights() {
-    const userGamenights = await getUserGamenights();
-    showUserGamenights(userGamenights);
-}
+function initGamenightTiles() {
+    document.getElementById("gamenightContainer").addEventListener("click", async function (e) {
+        e.preventDefault();
+        let tile = e.target.closest(".gamenightTile");
+        if (tile) {
+            const gamenightId = tile.getAttribute("id");
+            let gamenight = await fetch(`https://web2-gamenightapp-api.herokuapp.com/user/61b25e0da1a92d69d4d3fca5/gamenights/${gamenightId}`)
+                .then(response => response.json())
+                .then(data => new Gamenight(data));
 
-async function getUserGamenights() {
-    const userGamenights = await fetch('https://web2-gamenightapp-api.herokuapp.com/user/61b25e0da1a92d69d4d3fca5/gamenights')
-        .then(response => response.json())
-        .then(data => {
-            data.forEach((element, index) => {
-                data[index] = new Gamenight(element);
-            })
-            return data;
-        });
-    return userGamenights;
-}
+            document.getElementById("gamenights").style.display = "block";
+            document.getElementById("gamenightOverview").style.display = "none";
+            document.getElementById("gamenights").innerHTML = gamenight.getGamenightHtml();
+        }
 
-async function showUserGamenights(userGamenights) {
-    userGamenights.forEach(element => {
-        document.getElementById("gamenightContainer").insertAdjacentHTML('beforeend', element.getTileHtml())
-    });
+    })
 }

@@ -56,9 +56,15 @@ function init() {
         tabNumber++;
         showTabs(tabNumber);
     })
-    document.getElementById("formSubmit").addEventListener("click", function (e) {
+    document.getElementById("formSubmit").addEventListener("click", async function (e) {
         e.preventDefault();
-        makeGamenight();
+        let newGamenight = await makeGamenight();
+        if (newGamenight) {
+            document.getElementById("gamenights").style.display = "block";
+            document.getElementById("gamenightMaker").style.display = "none";
+            document.getElementById("gamenights").innerHTML = newGamenight.getGamenightHtml();
+            document.getElementById("gamenightContainer").insertAdjacentHTML("beforeend", newGamenight.getTileHtml());
+        }
     })
 }
 
@@ -101,6 +107,7 @@ function removeTime() {
 
 function showTabs(n) {
     const tabs = document.getElementsByClassName("tab");
+
     for (let tab of tabs) {
         tab.style.display = "none";
     }
@@ -140,7 +147,7 @@ async function makeGamenight() {
     } else if (response.ok) {
         gamenight = await response.json();
         const builtGamenight = new Gamenight(gamenight);
-        console.log(builtGamenight);
+        return builtGamenight;
     }
 }
 
@@ -200,7 +207,7 @@ function getCategoryIcon(category) {
 }
 
 module.exports = {
-    reset,
     init,
+    reset,
     showTabs
 }

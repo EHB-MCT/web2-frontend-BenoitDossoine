@@ -215,11 +215,12 @@ header .navigationLink:hover {
 
 #gamenightOverview,
 #gamenightMaker,
-#library {
+#library,
+#gamenights {
     /* min-height: 100vh; */
     margin-top: 100px;
     background-color: var(--custom-black);
-    padding: 0 7% 0;
+    padding: 0 7%;
     box-sizing: border-box;
 }
 
@@ -393,18 +394,10 @@ header .navigationLink:hover {
 }
 
 
-#gamenights {
-    min-height: 100vh;
-    background-color: var(--background-color);
-
-    padding: 0 7%;
-}
-
 #gamenightList {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-column-gap: 1vw;
-    margin-top: 25px;
 }
 
 .gamenightCard {
@@ -415,16 +408,15 @@ header .navigationLink:hover {
     grid-row-gap: 20px;
 
     background-color: var(--primary-color);
-
-    margin: 50px 0;
     padding: 50px 0;
+    margin-bottom: 100px;
 }
 
 .gamenightCard h1 {
     grid-column: 1/ span 10;
 
-    font-size: 30px;
-    margin: 0 0 50px;
+    font-size: 40px;
+    margin: 0 0 20px;
     text-align: center;
 }
 
@@ -437,51 +429,55 @@ header .navigationLink:hover {
 }
 
 .gamenightCard p {
-    font-size: 20px;
+    font-size: 2em;
 }
 
-.gamenightCardAddress {
+.gamenightCardPractical {
     grid-row: 2/ span 1;
     grid-column: 2/span 3;
 
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.gamenightCardPractical .hexagon {
+    font-size: 2em;
 }
 
 .gamenightCardAddress p,
 .gamenightCardTime p {
     width: calc(100% - 3em);
-
     box-sizing: border-box;
     padding-left: 1em;
     margin: 0;
 }
 
 
+.gamenightCardAddress,
 .gamenightCardTime {
-    grid-row: 2/ span 1;
-    grid-column: 7/ span 2;
-
     display: flex;
     flex-wrap: wrap;
     align-items: center;
 }
 
 .gamenightCardGuests {
-    grid-row: 3/ span 1;
-    grid-column: 2/span 3;
+    grid-row: 2/ span 1;
+    grid-column: 7/span 3;
+}
+
+.gamenightCardGuests p {
+    margin-top: 0;
+}
+
+.gamenightCardGuests .hexagon {
+    font-size: 1.5em;
 }
 
 .gamenightCardGuests>div {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-.gamenightCardCategories {
-    grid-row: 3/ span 1;
-    grid-column: 7/ span 2;
+    justify-content: flex-start;
 }
 
 .gamenightCardGames {
@@ -506,8 +502,15 @@ header .navigationLink:hover {
     border: 1px solid black;
 }
 
-.gamenightGame img {
+.gamenightGame .gamenightImgContainer {
     grid-column: 1/span 2;
+    display: flex;
+    align-items: center;
+    background-color: white;
+
+}
+
+.gamenightGame .gamenightImgContainer img {
     width: 100%;
 }
 
@@ -516,12 +519,18 @@ header .navigationLink:hover {
 }
 
 .gamenightGame h3 {
+    font-size: 1.5em;
     margin: 15px 0;
+}
+
+.gamenightGame dt {
+    font-size: 20px;
 }
 
 .gamenightGame dd {
     font-size: 20px;
     margin: 0 0 10px;
+    font-weight: bold;
 }
 
 

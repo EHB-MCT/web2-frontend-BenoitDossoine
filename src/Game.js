@@ -36,9 +36,12 @@ class Game {
                 <p>${this.playTime} min</p>
             </div>
         </div>
+        <button class="hexagon deleteLibraryGame" data-id="${this.id}"><i class="fas fa-trash"></i></button>
     </article>`;
         return this.htmlString;
     }
+
+
 
 }
 
