@@ -210,9 +210,29 @@ header li {
     margin: 0 1em 2px;
 }
 
+header .navigationLink {
+    position: relative;
+    cursor: pointer;
+}
+
 header .navigationLink:hover {
-    border-bottom: var(--primary-color) 2px solid;
     margin-bottom: 0;
+}
+
+header .navigationLink:after {
+    content: "\2B22";
+    color: var(--primary-color);
+    opacity: 0%;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    position: absolute;
+    transition: 0.4s;
+    transition-property: opacity;
+}
+
+header .navigationLink:hover:after {
+    opacity: 100%;
 }
 
 
