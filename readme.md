@@ -9,6 +9,12 @@ This is possible on the page of the same name, by clicking on "New game".
 You can also remove games you don't own anymore on the library page.
 
 The tiles on the homepage always get a random color. Try refreshing to see another pattern emerge!
+
+# Back-end
+
+There are a lot more routes in the back-end than are used on this application.
+These were meant to be used, but I couldn't get to it due to a lack of time.
+I decided to keep them there as a base for the expansion of the app.
 # Sources
 
 1. *Building a hexagonal grid using CSS grid*, Jesse Breneman, 15/11/2019.
