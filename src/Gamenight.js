@@ -86,7 +86,6 @@ class Gamenight {
     showGames() {
         let htmlString = ''
         for (let game of this.games) {
-            console.log(game);
             htmlString += ` <div class="gamenightGame">
             <div class="gamenightImgContainer">
                 <img src="${game.imgUrl}" alt="Image of ${game.name}">

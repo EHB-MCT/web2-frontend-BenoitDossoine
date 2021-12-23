@@ -183,6 +183,8 @@ header>.container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-sizing: border-box;
+    margin: 0 7%;
 }
 
 .hexagon>svg {
@@ -191,6 +193,7 @@ header>.container {
 
 header nav {
     width: auto;
+    justify-self: center;
 }
 
 header ul {
@@ -219,6 +222,7 @@ header .navigationLink:hover {
 #gamenights {
     /* min-height: 100vh; */
     margin-top: 100px;
+    margin-bottom: 100px;
     background-color: var(--custom-black);
     padding: 0 7%;
     box-sizing: border-box;
@@ -865,7 +869,7 @@ article.game button.deleteLibraryGame:hover {
     color: var(--custom-black);
 }
 
-article.game button.deleteLibraryGame:after:hover {
+article.game button.deleteLibraryGame:hover:after {
     background-color: var(--primary-color);
 }
 
@@ -873,11 +877,11 @@ article.game button.deleteLibraryGame:after:hover {
     position: absolute;
     top: 0;
     left: 0;
-    margin: 150px 7% 250px;
+    margin: 0 7%;
     padding: 1vw 0;
     box-sizing: border-box;
     width: 86%;
-    min-height: calc(100vh - 300px);
+    height: calc(100vh - 300px);
 
     display: none;
     grid-template-columns: repeat(12, 1fr);
@@ -916,6 +920,7 @@ article.game button.deleteLibraryGame:after:hover {
 #exitNewGameForm {
     grid-column: 11/span 1;
     justify-self: end;
+    font-size: 1.5em;
 }
 
 #newGameResults {
@@ -982,4 +987,16 @@ article.game button.deleteLibraryGame:after:hover {
 
 section#gamenights {
     display: none;
+}
+
+body::-webkit-scrollbar {
+    width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--custom-black);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #3f3f3f;
 }
