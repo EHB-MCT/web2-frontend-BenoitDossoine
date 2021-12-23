@@ -65,7 +65,7 @@ function init() {
 function fillFormCategories(categories) {
     document.getElementById("categoryContainer").innerHTML = "";
     for (let category of categories) {
-        const html = `<input type="checkbox" name="${category.name.toLowerCase()}" id="${category.name.toLowerCase()}" class="formCategory">
+        const html = `<input type="checkbox" name="${category.name.toLowerCase()}" id="${category.name.toLowerCase()}" class="formCategory" value="${category._id}">
         <label for="${category.name.toLowerCase()}" class="hexagon">${getCategoryIcon(category.name)}
             <p style="font-size:${category.name.length>11?20:30}px">${category.name}</p>
         </label>`
@@ -140,7 +140,7 @@ async function makeGamenight() {
     } else if (response.ok) {
         gamenight = await response.json();
         const builtGamenight = new Gamenight(gamenight);
-        showGamenight(builtGamenight);
+        console.log(builtGamenight);
     }
 }
 
@@ -152,7 +152,7 @@ function retrieveFormData() {
 
     for (let category of allCategories) {
         if (category.checked) {
-            chosenCategories.push(category.id);
+            chosenCategories.push(category.value);
         };
     }
 
