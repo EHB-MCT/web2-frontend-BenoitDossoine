@@ -211,6 +211,27 @@ function getCategoryIcon(category) {
         case "Cooperation":
             icon = '<i class="fas fa-users"></i>'
             break;
+        case "City Building":
+            icon = '<i class="fas fa-city"></i>'
+            break;
+        case "Dice":
+            icon = '<i class="fas fa-dice"></i>'
+            break;
+        case "Economic":
+            icon = '<i class="fas fa-euro-sign"></i>'
+            break;
+        case "Medieval":
+            icon = '<i class="fab fa-fort-awesome"></i>'
+            break;
+        case "Mythology":
+            icon = '<i class="fas fa-ankh"></i>'
+            break;
+        case "Novel-based":
+            icon = '<i class="fas fa-book-open"></i>'
+            break;
+        case "Pirates":
+            icon = '<i class="fas fa-skull-crossbones"></i>'
+            break;
         default:
             icon = `<i>${category.charAt(0)}</i>`
     }

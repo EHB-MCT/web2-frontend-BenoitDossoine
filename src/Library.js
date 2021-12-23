@@ -90,7 +90,7 @@ class Library {
                         .then(response => response.json())
                         .then(data => this.libraryBoardgames.push(new Game(data)));
                     await this.showUserBoardgames();
-
+                    await this.getCategories();
                     btn.classList.add("addedGame");
                     btn.innerHTML = '<i class="fas fa-check"></i>';
                 }
