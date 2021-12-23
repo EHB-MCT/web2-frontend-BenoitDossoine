@@ -21,7 +21,6 @@ const lodash = require('lodash');
 
 window.onload = async function () {
     console.log("Window loaded!");
-
     //Add eventlisteners to buttons on homepage
     document.getElementById("addGameNight").addEventListener("click", (e) => {
         document.getElementById("gamenightOverview").style.display = "none";
@@ -75,6 +74,8 @@ window.onload = async function () {
     initGamenightTiles();
 
     form.init();
+    console.log("Page fully loaded")
+    removeLoader();
 }
 
 function initGamenightTiles() {
@@ -93,4 +94,12 @@ function initGamenightTiles() {
         }
 
     })
+}
+
+function removeLoader() {
+    const loader = document.getElementById("loader");
+    loader.classList.add("loaded");
+    setTimeout(() => {
+        loader.remove();
+    }, 1100);
 }
