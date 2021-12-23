@@ -13,12 +13,7 @@ class Game {
         this.shortHtmlString = "";
     }
 
-    getCategories() {
-        for (let categoryId of this.categoryIds) {
-            console.log(categoryId)
-        }
-    }
-
+    // Html for library page
     getHtmlString() {
         this.htmlString = `<article class="game" data-id="${this.id}">
         <div class="gameImgContainer">
@@ -40,8 +35,6 @@ class Game {
     </article>`;
         return this.htmlString;
     }
-
-
 
 }
 

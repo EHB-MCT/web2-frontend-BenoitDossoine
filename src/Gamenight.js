@@ -13,6 +13,7 @@ class Gamenight {
         this.color = this.getRandomColor();
     }
 
+    // Html for homepage
     getTileHtml() {
         const htmlString =
             `<li class="hex-grid__item gamenightTile" id="${this.id}">
@@ -28,6 +29,7 @@ class Gamenight {
         return htmlString;
     }
 
+    // Html for gamenight details
     getGamenightHtml() {
         const htmlString =
             `<article class="gamenightCard">
@@ -65,19 +67,13 @@ class Gamenight {
         return htmlString;
     }
 
+    // Gives the tiles a random color on the homepage
     getRandomColor() {
         let tileColors = ['stone', 'water', 'sand', 'forest'];
         return tileColors[Math.floor(Math.random() * tileColors.length)];
     }
 
-    getGamesHtml() {
-        let htmlString = ""
-        for (let gameId of this.games) {
-            // const game = 
-        }
-        return htmlString;
-    }
-
+    //Show an amount of hexagons corresponding to the amount of players
     showPlayers() {
         let htmlString = '<div class="hexagon"><i class="fa fa-user"></i></div>'.repeat(this.playerAmount);
         return htmlString;

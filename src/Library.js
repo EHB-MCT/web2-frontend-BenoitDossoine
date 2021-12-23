@@ -31,6 +31,7 @@ class Library {
         this.libraryCategories = allCategories.filter(category => this.libraryCategories.some(categoryId => categoryId == category._id));
     }
 
+
     async retrieveNewGames(searchString) {
         const resultContainer = document.getElementById("newGameResults");
         resultContainer.innerHTML = "";
@@ -41,8 +42,12 @@ class Library {
             let searchResult = await fetch(base_url + searchString)
                 .then(response => response.json())
                 .then(data => data.games);
+
+            //Limit the results to 6 boardgames
             searchResult = searchResult.splice(0, 6);
+
             for (let game of searchResult) {
+                //Check if the game is already present in the library
                 const check = await this.checkGameInLibrary(game.id);
                 let htmlString = `<div class="newGame" data-id="${game.id}">
                 <div class="newGameImgContainer">
@@ -62,6 +67,7 @@ class Library {
         }
     }
 
+    // add an event listener to all the add buttons of the games retrieved
     async initAddBtns(searchResult) {
         let newGameContainer = document.getElementById("newGameResults");
         newGameContainer.addEventListener("click", async (e) => {
@@ -97,6 +103,7 @@ class Library {
         return this.libraryBoardgames.some(game => game.id == gameId);
     }
 
+    // init the delete buttons
     async initDeleteBtns() {
         const boardgamesContainer = document.getElementById("libraryContainer");
         boardgamesContainer.addEventListener("click", async (e) => {

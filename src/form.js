@@ -59,6 +59,8 @@ function init() {
     document.getElementById("formSubmit").addEventListener("click", async function (e) {
         e.preventDefault();
         let newGamenight = await makeGamenight();
+
+        // Only do the following if we get a correct response back from the backend
         if (newGamenight) {
             document.getElementById("gamenights").style.display = "block";
             document.getElementById("gamenightMaker").style.display = "none";
@@ -68,6 +70,8 @@ function init() {
     })
 }
 
+// function to only display the boardgame categories present in the library on the form
+// getCategoryIcon gives the correct icon for each category, based on the category name 
 function fillFormCategories(categories) {
     document.getElementById("categoryContainer").innerHTML = "";
     for (let category of categories) {
@@ -105,6 +109,7 @@ function removeTime() {
     }
 }
 
+// function to show the different steps of the form
 function showTabs(n) {
     const tabs = document.getElementsByClassName("tab");
 
@@ -114,6 +119,7 @@ function showTabs(n) {
     document.getElementsByClassName("tab")[n].style.display = "block";
 
     if (n == 0) {
+        // on first step, disable the 'back' button
         document.getElementById("formPrevious").disabled = true;
     } else {
         document.getElementsByClassName("tab")[n - 1].style.display = "none";
@@ -121,6 +127,7 @@ function showTabs(n) {
     }
 
     if (n == document.getElementsByClassName("tab").length - 1) {
+        // on last step, remove 'next' button and replace by 'submit' button
         document.getElementById("formNext").style.display = "none";
         document.getElementById("formSubmit").style.display = "block";
     } else {
@@ -140,9 +147,12 @@ async function makeGamenight() {
         },
         body: JSON.stringify(gamenight)
     });
+
     if (response.status == "204") {
+        // this means we got back an empty boardgame collection for the selected parameters
         alert('There are no games in your library that fit your parameters.');
     } else if (response.status == "400") {
+        // missing form elements
         alert('Please fill in the form correctly.');
     } else if (response.ok) {
         gamenight = await response.json();
@@ -179,6 +189,7 @@ function retrieveFormData() {
     }
 }
 
+// function to get the correct icon for the correct category
 function getCategoryIcon(category) {
     let icon = '';
     switch (category) {
