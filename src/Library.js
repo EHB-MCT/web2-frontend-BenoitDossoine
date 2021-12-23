@@ -18,7 +18,7 @@ class Library {
         this.libraryBoardgames.forEach(element => {
             document.getElementById("libraryContainer").insertAdjacentHTML('beforeend', element.getHtmlString());
         })
-        this.initDeleteBtns();
+        this.initBtns();
     }
 
     async getCategories() {
@@ -104,13 +104,13 @@ class Library {
     }
 
     // init the delete buttons
-    async initDeleteBtns() {
+    async initBtns() {
         const boardgamesContainer = document.getElementById("libraryContainer");
         boardgamesContainer.addEventListener("click", async (e) => {
             e.preventDefault();
-            let btn = e.target.closest(".deleteLibraryGame");
-            if (btn) {
-                let gameId = btn.getAttribute("data-id");
+            const deleteBtn = e.target.closest(".deleteLibraryGame");
+            if (deleteBtn) {
+                let gameId = deleteBtn.getAttribute("data-id");
                 await fetch(`https://web2-gamenightapp-api.herokuapp.com/user/61b25e0da1a92d69d4d3fca5/boardgames/${gameId}`, {
                     method: 'DELETE'
                 });
@@ -118,6 +118,25 @@ class Library {
                 this.libraryBoardgames = this.libraryBoardgames.filter(boardgame => boardgame.id != gameId);
                 await this.showUserBoardgames();
             }
+
+            const infoBtn = e.target.closest(".gameInfoLink")
+            const lessBtn = e.target.closest(".lessInfo")
+
+            if (infoBtn) {
+                let id = infoBtn.getAttribute("data-id");
+                document.getElementById(`info${id}`).innerHTML = this.libraryBoardgames.filter(boardgame => boardgame.id == id)[0].description;
+                infoBtn.style.display = "none";
+                document.getElementById(`less${id}`).style.display = "block";
+            }
+
+            if (lessBtn) {
+                let id = lessBtn.getAttribute("data-id");
+                document.getElementById(`info${id}`).innerHTML = this.libraryBoardgames.filter(boardgame => boardgame.id == id)[0].description.substring(0, 250) + "...";
+
+                lessBtn.style.display = "none";
+                document.getElementById(`more${id}`).style.display = "block";
+            }
+
         })
     }
 }

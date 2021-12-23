@@ -21,7 +21,7 @@ class Game {
         </div>
         <div class="gameStats">
             <h1>${this.name}</h1>
-            <p>${this.description.substring(0,250)}...</p> <a>See more</a>
+            <p id="info${this.id}">${this.description.substring(0,250)}...</p> <a class="gameInfoLink" id="more${this.id}" data-id="${this.id}">See more</a><a style="display:none" class="lessInfo" id="less${this.id}" data-id="${this.id}">See less</a>
             <div class="gamePlayers">
                 <h2>Players:</h2>
                 <p>${this.minPlayers} to ${this.maxPlayers} players</p>
